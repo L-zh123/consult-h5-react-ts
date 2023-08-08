@@ -55,7 +55,6 @@ const User: React.FC<IProps> = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const logout = async () => {
-    console.log('退出登录')
     const result = await Dialog.confirm({
       title: '提示',
       content: '确定要退出吗?'

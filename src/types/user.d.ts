@@ -63,3 +63,9 @@ export type T_API_PatientList = {
   data: Patient[]
   message: string
 }
+
+export type T_API<T> = {
+  code: number
+  data: T
+  message: string
+}

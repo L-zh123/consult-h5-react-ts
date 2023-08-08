@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import type { ReactNode } from 'react'
 import { NavBar } from 'antd-mobile'
 import { CpNavBarWrapper } from './style'
@@ -8,14 +8,15 @@ interface IProps {
   centerTitle: string
   right?: string
   backArrow?: boolean
+  back?: () => void
   rightClick?: () => void
 }
 
 const CpNavBar: React.FC<IProps> = (props) => {
-  const { centerTitle, right, rightClick, backArrow = true } = props
+  const { centerTitle, right, rightClick, backArrow = true, back } = props
   const rightContent = useMemo(
     () => (
-      <div onClick={rightClick && rightClick}>
+      <div onClick={rightClick}>
         <a
           style={{
             display: 'block',
@@ -26,14 +27,16 @@ const CpNavBar: React.FC<IProps> = (props) => {
         </a>
       </div>
     ),
-    []
+    [rightClick]
   )
   // 点击导航栏的左侧
-  const [location] = useSearchParams()
   const navigate = useNavigate()
   const leftClick = () => {
-    console.log('左侧被点击', location.has(''))
-    navigate(-1)
+    if (back) {
+      back()
+    } else {
+      navigate(-1)
+    }
   }
   return (
     <CpNavBarWrapper>

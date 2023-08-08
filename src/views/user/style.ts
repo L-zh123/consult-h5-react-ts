@@ -205,12 +205,12 @@ export const PatientWrapper = styled.div`
     text-align: center;
     padding: 15px 0;
     border-radius: 8px;
-    .cp-icon {
-      font-size: 24px;
-    }
   }
   .patient-tip {
     color: var(--cp-tag);
     padding: 12px 0;
+  }
+  .box {
+    color: #f00;
   }
 `

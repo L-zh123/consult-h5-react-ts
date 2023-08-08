@@ -3,7 +3,8 @@ import type {
   TCodeType,
   T_API_CodeLogin,
   T_API_UserInfo,
-  T_API_PatientList
+  T_API_PatientList,
+  Patient
 } from '@/types/user'
 import hyRequest from '@/service'
 
@@ -44,3 +45,25 @@ export const getUserInfo = () =>
 // 获患者信息列表
 export const getPatientList = () =>
   hyRequest.get<T_API_PatientList>({ url: '/patient/mylist' })
+
+// 添加患者信息
+export const addPatient = (patient: Patient) =>
+  hyRequest.post<any>({
+    url: '/patient/add',
+    data: patient
+  })
+
+// 编辑患者信息
+export const editPatient = (patient: Patient) =>
+  hyRequest.request({
+    url: '/patient/update',
+    method: 'put',
+    data: patient
+  })
+
+// 删除患者信息
+export const delPatient = (id: string) =>
+  hyRequest.request({
+    url: `/patient/del/${id}`,
+    method: 'delete'
+  })

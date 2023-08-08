@@ -45,7 +45,7 @@ class HYRequest {
   }
 
   // 封装网络请求的方法
-  request<T>(config: HYRequestConfig) {
+  request<T = any>(config: HYRequestConfig) {
     // 单次请求的成功拦截处理
     if (config.interceptors?.requestSuccessFn) {
       config = config.interceptors.requestSuccessFn(config)
